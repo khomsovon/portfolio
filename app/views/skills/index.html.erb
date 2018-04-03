@@ -16,7 +16,7 @@
       <tr>
         <td><%= skill.title %></td>
         <td><%= skill.percent_untilized %></td>
-        <td><%= link_to 'Show', skill %></td>
+        <td><%= link_to 'Show', skill_show_path(:id => skill.id,:skill_id =>3) %></td>
         <td><%= link_to 'Edit', edit_skill_path(skill) %></td>
         <td><%= link_to 'Destroy', skill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

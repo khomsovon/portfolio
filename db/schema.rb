@@ -10,41 +10,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180402095334) do
-
+ActiveRecord::Schema.define(version: 20_180_404_025_459) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "blogs", force: :cascade do |t|
-    t.string "title"
-    t.text "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "status", default: 0
+  create_table 'blogs', force: :cascade do |t|
+    t.string 'title'
+    t.text 'body'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.integer 'status', default: 0
+    t.bigint 'topic_id'
+    t.index ['topic_id'], name: 'index_blogs_on_topic_id'
   end
 
-  create_table "portfolios", force: :cascade do |t|
-    t.string "title"
-    t.string "subtitle"
-    t.text "body"
-    t.text "main_image"
-    t.string "thumb_image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'portfolios', force: :cascade do |t|
+    t.string 'title'
+    t.string 'subtitle'
+    t.text 'body'
+    t.text 'main_image'
+    t.string 'thumb_image'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'posts', force: :cascade do |t|
+    t.string 'title'
+    t.text 'description'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "skills", force: :cascade do |t|
-    t.string "title"
-    t.integer "percent_untilized"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'skills', force: :cascade do |t|
+    t.string 'title'
+    t.integer 'percent_untilized'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
+  create_table 'topics', force: :cascade do |t|
+    t.string 'title'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+  end
+
+  add_foreign_key 'blogs', 'topics'
 end

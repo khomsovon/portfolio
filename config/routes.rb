@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
   root to: 'pages#home'
-  resources :skills
+  resources :skills, except: [:show]
+  get 'skill/:id/:skill_id', to: 'skills#show', as: 'skill_show'
   resources :portfolios
-  resources :blogs
+  resources :blogs do
+    member do
+      get :toggle_status
+    end
+  end
   resources :posts
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
